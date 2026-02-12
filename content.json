@@ -1,0 +1,25 @@
+{
+"hero":{
+"title":"Institutional Media Excellence",
+"subtitle":"We Build Influence For Organizations That Lead"
+},
+
+"about":
+"TRND is the creative force behind institutional media production, delivering cinematic storytelling and strategic communication.",
+
+"services":[
+"Institutional Production",
+"Campaign Management",
+"Corporate Documentation",
+"Media Strategy",
+"Content Creation",
+"Sales Media"
+],
+
+"projects":[
+{"title":"Government Documentary","type":"Video","cat":"video"},
+{"title":"Brand Identity Launch","type":"Branding","cat":"branding"},
+{"title":"National Campaign","type":"Campaign","cat":"campaign"},
+{"title":"Corporate Film","type":"Video","cat":"video"}
+]
+}
