@@ -43,18 +43,29 @@ background:var(--dark);
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 8%;
+padding:1.2rem 5%;
+flex-wrap:wrap;
+}
+
+.logo img{
+height:auto;
+max-height:60px;
+width:auto;
+max-width:150px;
+object-fit:contain;
+transition:0.3s ease;
 }
 
 .menu{
 display:flex;
-gap:30px;
+gap:2rem;
+flex-wrap:wrap;
 }
 
 .menu a{
 color:#fff;
 text-decoration:none;
-font-size:14px;
+font-size:clamp(14px,1.2vw,16px);
 transition:var(--transition);
 }
 
@@ -65,7 +76,7 @@ color:var(--primary);
 .menu-toggle{
 display:none;
 cursor:pointer;
-font-size:24px;
+font-size:28px;
 }
 
 .hero{
@@ -74,7 +85,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:0 8%;
+padding:0 5%;
 background:linear-gradient(135deg,#0f1116,#141824);
 background-size:400% 400%;
 animation:gradient 15s ease infinite;
@@ -88,7 +99,7 @@ transition:transform 0.3s;
 }
 
 .hero h1{
-font-size:48px;
+font-size:clamp(2rem,4vw,3rem);
 margin-bottom:20px;
 opacity:0;
 transform:translateY(20px);
@@ -96,7 +107,7 @@ transition:all 1s ease;
 }
 
 .hero p{
-font-size:18px;
+font-size:clamp(1rem,2vw,1.2rem);
 margin-bottom:30px;
 opacity:0;
 transform:translateY(20px);
@@ -118,7 +129,7 @@ transform:translateY(0);
 
 .btn{
 display:inline-block;
-padding:14px 35px;
+padding:clamp(10px,1vw,16px) clamp(20px,2vw,35px);
 background:var(--primary);
 color:#fff;
 text-decoration:none;
@@ -134,19 +145,19 @@ transform:translateY(-3px);
 .container{
 max-width:1200px;
 margin:auto;
-padding:100px 8%;
+padding:clamp(60px,8vw,100px) 5%;
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+gap:2rem;
 margin-top:40px;
 }
 
 .card{
 background:var(--dark2);
-padding:30px;
+padding:clamp(20px,2vw,30px);
 border:1px solid var(--border);
 transition:var(--transition);
 opacity:0;
@@ -174,6 +185,7 @@ margin-bottom:15px;
 background:var(--dark2);
 border:1px solid var(--border);
 color:#fff;
+font-size:clamp(14px,1vw,16px);
 }
 
 input:focus,textarea:focus{
@@ -183,12 +195,25 @@ border-color:var(--primary);
 
 footer{
 text-align:center;
-padding:30px;
+padding:30px 5%;
 border-top:1px solid var(--border);
 color:var(--muted);
-position:relative;
 }
 
+footer .footer-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+}
+
+footer .footer-logo{
+max-height:50px;
+width:auto;
+object-fit:contain;
+}
+
+/* Scroll top button */
 #scrollTop{
 position:fixed;
 bottom:30px;
@@ -209,11 +234,10 @@ background:var(--primary-dark);
 }
 
 /* Mobile */
-
 @media(max-width:768px){
 
 .hero h1{
-font-size:32px;
+font-size:clamp(1.8rem,6vw,2.5rem);
 }
 
 .menu{
@@ -221,7 +245,7 @@ display:none;
 flex-direction:column;
 position:absolute;
 top:80px;
-right:8%;
+right:5%;
 background:var(--dark2);
 padding:20px;
 }
@@ -232,6 +256,10 @@ display:flex;
 
 .menu-toggle{
 display:block;
+}
+
+.logo img{
+max-height:50px;
 }
 
 }

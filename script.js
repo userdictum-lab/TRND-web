@@ -16,8 +16,8 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 // Hero mouse parallax
 document.getElementById("hero").addEventListener("mousemove",(e)=>{
-const x = (e.clientX/window.innerWidth -0.5)*30;
-const y = (e.clientY/window.innerHeight -0.5)*30;
+const x = (e.clientX/window.innerWidth -0.5)*20;
+const y = (e.clientY/window.innerHeight -0.5)*20;
 document.getElementById("hero").style.transform=`translate(${x}px,${y}px)`;
 });
 
