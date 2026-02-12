@@ -1,40 +1,72 @@
-// Menu toggle
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("active");
-}
-
-// Header scroll effect
-window.addEventListener("scroll",()=>{
-document.getElementById("header").classList.toggle("scrolled", window.scrollY>50);
-document.getElementById("scrollTop").style.display = window.scrollY>300 ? 'block':'none';
+// Custom Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
 });
 
-// Scroll to top button
-document.getElementById("scrollTop").addEventListener("click",()=>{
-window.scrollTo({top:0,behavior:"smooth"});
+document.querySelectorAll('a, button, .bento-item, .project, .cta-btn, .testimonial').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
 });
 
-// Hero mouse parallax
-document.getElementById("hero").addEventListener("mousemove",(e)=>{
-const x = (e.clientX/window.innerWidth -0.5)*20;
-const y = (e.clientY/window.innerHeight -0.5)*20;
-document.getElementById("hero").style.transform=`translate(${x}px,${y}px)`;
+// Menu Toggle
+document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('menu').classList.toggle('active');
 });
 
-// Reveal on scroll
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
-}
-});
-},{threshold:0.2});
-
-document.querySelectorAll(".card,.hero-content,.reveal").forEach(el=>{
-observer.observe(el);
+// Header Scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 80);
 });
 
-// Initial hero content fade-in
-window.addEventListener("load",()=>{
-document.querySelector(".hero").classList.add("visible");
+// Reveal + Counters
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            const counters = entry.target.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                if (counter.dataset.animated) return;
+                counter.dataset.animated = "true";
+                let start = 0;
+                const target = parseInt(counter.dataset.target);
+                const inc = Math.ceil(target / 60);
+                const timer = setInterval(() => {
+                    start += inc;
+                    counter.textContent = start;
+                    if (start >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 30);
+            });
+        }
+    });
+}, { threshold: 0.25 });
+
+document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+// Hero visible
+window.addEventListener('load', () => {
+    document.getElementById('hero').classList.add('visible');
+});
+
+// Contact Form
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('✅ Your request has been sent successfully!');
+    this.reset();
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
 });
